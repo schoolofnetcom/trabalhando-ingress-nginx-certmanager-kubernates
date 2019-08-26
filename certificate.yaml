@@ -1,0 +1,16 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: curinga
+spec:
+  secretName: wildcard-dns
+  issuerRef:
+    kind: ClusterIssuer
+    name: wildcard-dns
+  commonName: '*.hackathonshift.com.br'
+  acme:
+    config:
+    - dns01:
+        provider: cf-dns
+      domains:
+      - '*.hackathonshift.com.br'
